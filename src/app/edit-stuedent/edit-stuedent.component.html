@@ -1,0 +1,47 @@
+<form
+  [formGroup]="myForm"
+  (ngSubmit)="onSubmit(myForm)"
+  class="flex justify-center items-center flex-col w-full h-screen"
+>
+  <div class="w-2/5">
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" placeholder="Your name" />
+    </mat-form-field>
+  </div>
+  <div class="w-2/5">
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Email</mat-label>
+      <input
+        matInput
+        formControlName="email"
+        placeholder="Your email"
+        type="email"
+      />
+    </mat-form-field>
+  </div>
+  <div class="w-2/5">
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Student_course</mat-label>
+      <input
+        matInput
+        formControlName="student_course"
+        placeholder="Your course"
+        type="text"
+      />
+    </mat-form-field>
+  </div>
+
+  <div class="w-2/5">
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Fees</mat-label>
+      <input
+        matInput
+        formControlName="fees"
+        placeholder="Enter Fees"
+        type="text"
+      />
+    </mat-form-field>
+  </div>
+  <button mat-raised-button type="submit" color="primary">Edit</button>
+</form>

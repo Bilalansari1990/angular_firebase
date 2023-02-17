@@ -1,0 +1,21 @@
+<table>
+  <tr>
+    <th>#</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Student_course</th>
+    <th>Fees</th>
+    <th>Actions</th>
+  </tr>
+  <tr *ngFor="let item of students; let i = index">
+    <td>{{ i + 1 }}</td>
+    <td>{{ item.name }}</td>
+    <td>{{ item.email }}</td>
+    <td>{{ item.student_course }}</td>
+    <td>{{ item.fees }}</td>
+    <td class="flex gap-4">
+      <button mat-raised-button (click)="editStudent(item)">Edit</button>
+      <button mat-raised-button (click)="deleteStudent(item)">Delete</button>
+    </td>
+  </tr>
+</table>

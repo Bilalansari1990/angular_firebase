@@ -1,0 +1,183 @@
+<div class="spinner-loader-container" *ngIf="showLoader">
+  <mat-spinner></mat-spinner>
+</div>
+<mat-tab-group
+  [selectedIndex]="selectedTabIndex"
+  (selectedIndexChange)="onTabChange($event)"
+>
+  <mat-tab label="Card">
+    <ng-template matTabContent>
+      <mat-card class="example-card">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>Shiba Inu</mat-card-title>
+          <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+        </mat-card-header>
+        <img
+          mat-card-image
+          src="http://placekitten.com/g/200/300"
+          alt="Photo of a Shiba Inu"
+          class="h-64 p-3"
+        />
+        <mat-card-content>
+          <p>
+            The Shiba Inu is the smallest of the six original and distinct spitz
+            breeds of cat from Japan. A small, agile cat that copes very well
+            with mountainous terrain, the Shiba Inu was originally bred for
+            hunting.
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button>LIKE</button>
+          <button mat-button>SHARE</button>
+        </mat-card-actions>
+        <mat-card-footer>
+          <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </mat-card-footer>
+      </mat-card>
+    </ng-template>
+  </mat-tab>
+  <mat-tab label="Form">
+    <ng-template matTabContent>
+      <section class="flex flex-col gap-4 w-2/4 my-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Input</mat-label>
+          <input matInput />
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Select</mat-label>
+          <mat-select>
+            <mat-option value="one">First option</mat-option>
+            <mat-option value="two">Second option</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Enter your password</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="hide = !hide"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide"
+          >
+            <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+          </button>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Color</mat-label>
+          <input matInput type="color" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Textarea</mat-label>
+          <textarea matInput></textarea>
+        </mat-form-field>
+      </section>
+    </ng-template>
+  </mat-tab>
+  <mat-tab label="List">
+    <ng-template matTabContent>
+      <h3>Single line lists</h3>
+      <mat-list>
+        <mat-list-item>
+          <span matListItemTitle>This is the title</span>
+        </mat-list-item>
+        <mat-list-item>Also the title</mat-list-item>
+      </mat-list>
+
+      <h3>Two line lists</h3>
+      <mat-list>
+        <mat-list-item>
+          <span matListItemTitle>Title</span>
+          <span matListItemLine>Second line</span>
+        </mat-list-item>
+        <mat-list-item>
+          <span matListItemTitle>Title</span>
+          <span>Second line</span>
+        </mat-list-item>
+        <mat-list-item>
+          <span matListItemTitle>Title</span>
+          Second line
+        </mat-list-item>
+      </mat-list>
+
+      <h3>Three line lists</h3>
+      <mat-list>
+        <mat-list-item>
+          <span matListItemTitle>Title</span>
+          <span matListItemLine>Second line</span>
+          <span matListItemLine>Third line</span>
+        </mat-list-item>
+        <mat-list-item>
+          <span matListItemTitle>Title</span>
+          <span matListItemLine>Second line. This line will truncate.</span>
+          <span>Third line</span>
+        </mat-list-item>
+        <mat-list-item>
+          <span matListItemTitle>Title</span>
+          <span matListItemLine>Second line. This line will truncate.</span>
+          Third line
+        </mat-list-item>
+      </mat-list>
+
+      <h3>Three line list with secondary text wrapping</h3>
+      <mat-list class="example-list-wrapping">
+        <mat-list-item lines="3">
+          <span matListItemTitle>Title</span>
+          <span
+            >Secondary line that will wrap because the list lines is explicitly
+            set to 3 lines. Text inside of a `matListItemTitle` or
+            `matListItemLine` will never wrap.
+          </span>
+        </mat-list-item>
+        <mat-list-item lines="3">
+          <span matListItemTitle>Title</span>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+          culpa qui officia deserunt mollit anim id est
+        </mat-list-item>
+      </mat-list>
+    </ng-template>
+  </mat-tab>
+  <mat-tab label="Table">
+    <ng-template matTabContent>
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 my-4">
+        <!--- Note that these columns can be defined in any order.
+                  The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="position">
+          <th mat-header-cell *matHeaderCellDef>No.</th>
+          <td mat-cell *matCellDef="let element">{{ element.position }}</td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Name</th>
+          <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="weight">
+          <th mat-header-cell *matHeaderCellDef>Weight</th>
+          <td mat-cell *matCellDef="let element">{{ element.weight }}</td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="symbol">
+          <th mat-header-cell *matHeaderCellDef>Symbol</th>
+          <td mat-cell *matCellDef="let element">{{ element.symbol }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </ng-template>
+  </mat-tab>
+</mat-tab-group>

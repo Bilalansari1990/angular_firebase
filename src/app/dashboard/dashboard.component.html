@@ -1,0 +1,81 @@
+<mat-sidenav-container>
+  <mat-sidenav
+    #snav
+    [mode]="isWindowWidthLessThan1023 ? 'over' : 'side'"
+    [fixedInViewport]="isWindowWidthLessThan1023"
+    class="h-full w-72 overflow-y-scroll py-3 px-6"
+    opened
+  >
+    <!-- <svg class="icon auto self-center mb-6">
+        <use xlink:href="./assets/svgs/logo.svg#logo"></use>
+      </svg> -->
+
+    <a
+      *ngFor="let link of links"
+      [routerLink]="link.route"
+      routerLinkActive="router-link-active"
+      class="w-full flex items-center my-3 p-2 rounded-lg"
+      [routerLinkActiveOptions]="{
+        exact: link.route == '/' || link.route == '/dashboard' ? true : false
+      }"
+    >
+      <mat-icon>{{ link.icon }}</mat-icon>
+
+      <p class="ml-2">{{ link.body }}</p>
+    </a>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="content">
+    <header
+      class="bg-primary py-3 px-6 flex justify-between lg:justify-end items-center"
+    >
+      <button
+        class="w-32 flex justify-items-start h-full items-center"
+        *ngIf="isWindowWidthLessThan1023"
+      >
+        <mat-icon (click)="snav.toggle()" class="text-white">menu</mat-icon>
+      </button>
+
+      <div class="notifications flex w-32 gap-6">
+        <mat-icon
+          class="text-white"
+          matBadge="1"
+          matBadgeColor="warn"
+          matBadgeSize="small"
+        >
+          notifications
+        </mat-icon>
+        <mat-icon
+          class="text-white cursor-pointer"
+          matBadge="4"
+          matBadgeColor="warn"
+          matBadgeSize="small"
+          routerLink="/chat"
+        >
+          textsms
+        </mat-icon>
+        <mat-icon
+          class="text-white cursor-pointer"
+          [matMenuTriggerFor]="menu"
+          matBadge="20"
+          matBadgeColor="warn"
+          matBadgeSize="small"
+        >
+          account_circle
+        </mat-icon>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="logout()">logout</button>
+        </mat-menu>
+      </div>
+    </header>
+    <div class="page-title mb-2 mt-5 px-6 flex gap-3 items-end">
+      <h1 class="text-2xl font-medium">{{ pageTitle }}</h1>
+      <h3 class="text-lg font-medium leading-lose text-gray-600">
+        {{ pageSubTitle }}
+      </h3>
+    </div>
+    <main class="py-3 px-6">
+      <router-outlet></router-outlet>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>

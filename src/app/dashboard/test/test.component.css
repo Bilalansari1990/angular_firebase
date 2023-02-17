@@ -1,0 +1,25 @@
+.example-card {
+    max-width: 400px;
+    margin: 1rem;
+  }
+  
+  .example-header-image {
+    background-image: url('http://placekitten.com/g/200/300');
+    background-size: cover;
+  }
+  .spinner-loader-container {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.349);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999999999999;
+  }
+  table {
+    width: 100%;
+  }
+  

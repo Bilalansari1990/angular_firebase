@@ -1,0 +1,66 @@
+<section>
+  <article
+    class="flex flex-col p-6 gap-1 content-center items-center justify-center"
+  >
+    <h1 class="no-underline text-3xl text-black p-1 text-center mb-3">
+      Hello Again!
+    </h1>
+
+    <form [formGroup]="loginForm" class="w-full">
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Enter Email</mat-label>
+        <input
+          matInput
+          type="email"
+          placeholder="Enter Email"
+          formControlName="email"
+          [errorStateMatcher]="matcher"
+          placeholder="Ex. john@example.com"
+        />
+        <mat-error *ngIf="loginForm.controls.email.errors?.['required']">
+          Email is <strong>required</strong>.
+        </mat-error>
+        <mat-error *ngIf="loginForm.controls.email.errors?.['email']">
+          <strong>Invalid</strong> email address.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Enter your password</mat-label>
+        <input
+          matInput
+          [type]="hide ? 'password' : 'text'"
+          formControlName="password"
+          placeholder="Ex. bilal123"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="hide = !hide"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide"
+        >
+          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
+        <mat-error *ngIf="loginForm.controls.password.errors?.['minlength']">
+          Password is <strong>less than 3 characters</strong>.
+        </mat-error>
+        <mat-error *ngIf="loginForm.controls.password.errors?.['required']">
+          Password is <strong>required</strong>.
+        </mat-error>
+      </mat-form-field>
+
+      <button
+        mat-raised-button
+        class="w-full"
+        [color]="getButtonStatus()"
+        (click)="onSubmit()"
+      >
+        Login
+      </button>
+    </form>
+  </article>
+  <div class="landingImg">
+    <img src="./assets/svgs/auth/bgAuth2.svg" alt=" " />
+  </div>
+</section>
