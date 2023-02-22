@@ -22,8 +22,7 @@ export class CreateComponent implements OnInit {
   }
 
   onSubmit(form: FormGroup) {
-    if (form.valid) {
-      console.log(form.value);
+    if (form.valid as boolean) {
       this.studentService.createStudent(form.value);
       this.router.navigate(['/list']);
     }

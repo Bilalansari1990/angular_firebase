@@ -1,3 +1,20 @@
+<div *ngFor="let message of messageList">
+  <li>
+    {{ message }}
+  </li>
+</div>
+<mat-form-field appearance="outline">
+  <input
+    placeholder="send message...."
+    matInput
+    [(ngModel)]="newMessage"
+    (keyup)="$event.keyCode == 13 && sendMessage()"
+  />
+</mat-form-field>
+<button mat-raised-button (click)="sendMessage()" [disabled]="newMessage == ''">
+  Send Message
+</button>
+
 <table>
   <tr>
     <th>#</th>
@@ -9,7 +26,7 @@
   </tr>
   <tr *ngFor="let item of students; let i = index">
     <td>{{ i + 1 }}</td>
-    <td>{{ item.name }}</td>
+    <td>{{ item.name | titlecase }}</td>
     <td>{{ item.email }}</td>
     <td>{{ item.student_course }}</td>
     <td>{{ item.fees }}</td>

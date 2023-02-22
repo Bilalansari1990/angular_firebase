@@ -17,6 +17,8 @@ import {
   MAT_SNACK_BAR_DEFAULT_OPTIONS,
   MatSnackBarModule,
 } from '@angular/material/snack-bar';
+import { MatExpansionModule } from '@angular/material/expansion';
+
 import { CreateComponent } from './create/create.component';
 import { ListStuedentComponent } from './list-stuedent/list-stuedent.component';
 import { EditStuedentComponent } from './edit-stuedent/edit-stuedent.component';
@@ -24,6 +26,8 @@ import { EditStuedentComponent } from './edit-stuedent/edit-stuedent.component';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore/';
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from './enviorment/environment';
+import { RouterModule } from '@angular/router';
+import { MatListModule } from '@angular/material/list';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,6 +50,10 @@ import { environment } from './enviorment/environment';
     ReactiveFormsModule,
     AngularFirestoreModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    RouterModule,
+    RouterModule.forRoot([]),
+    MatExpansionModule,
+    MatListModule,
   ],
   providers: [
     { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 2500 } },

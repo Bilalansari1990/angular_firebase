@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Student } from '../student.model';
 import { StudentService } from '../student.service';
 import { Router } from '@angular/router';
-
+import { SocketService } from '../socket.service';
+import { NgOptimizedImage } from '@angular/common';
 @Component({
   selector: 'app-list-stuedent',
   templateUrl: './list-stuedent.component.html',
@@ -10,7 +11,12 @@ import { Router } from '@angular/router';
 })
 export class ListStuedentComponent implements OnInit {
   students: Student[] = [];
-  constructor(private studentService: StudentService, private router: Router) {}
+  messageList: any[] = [];
+  constructor(
+    private studentService: StudentService,
+    private router: Router,
+    private socketService: SocketService
+  ) {}
 
   ngOnInit(): void {
     this.studentService.getStudentList().subscribe((response) => {
@@ -21,6 +27,10 @@ export class ListStuedentComponent implements OnInit {
         } as Student;
       });
     });
+
+    this.socketService.getNewMessage().subscribe((message: string) => {
+      this.messageList.push(message);
+    });
   }
 
   editStudent(item: any) {
@@ -28,5 +38,13 @@ export class ListStuedentComponent implements OnInit {
   }
   deleteStudent(item: any) {
     this.studentService.deleteStudent(item);
+  }
+
+  newMessage: string;
+  sendMessage() {
+    if (this.newMessage) {
+      this.socketService.sendMessage(this.newMessage);
+      this.newMessage = '';
+    }
   }
 }

@@ -46,10 +46,10 @@ export class StudentService {
       .collection('student-collection')
       .doc(id)
       .update({
-        name: student.name,
-        email: student.email,
-        student_course: student.student_course,
-        fees: student.fees,
+        name: student.name as string,
+        email: student.email as string,
+        student_course: student.student_course as string,
+        fees: student.fees as string,
       });
   }
 }
